@@ -11,14 +11,18 @@ import { Search, Sparkles, Filter } from "lucide-react"
 const categories = ["All", "Professional", "Modern", "Creative", "Simple", "Executive"]
 
 const templates = [
-  { id: "modern-1", name: "Modern Pro", category: "Modern", isPremium: false },
-  { id: "professional-1", name: "Executive Suite", category: "Professional", isPremium: true },
-  { id: "creative-1", name: "Creative Edge", category: "Creative", isPremium: false },
-  { id: "simple-1", name: "Clean Slate", category: "Simple", isPremium: false },
-  { id: "modern-2", name: "Tech Forward", category: "Modern", isPremium: true },
-  { id: "professional-2", name: "Corporate", category: "Professional", isPremium: false },
-  { id: "executive-1", name: "Leadership", category: "Executive", isPremium: true },
-  { id: "creative-2", name: "Bold Impact", category: "Creative", isPremium: false },
+  { id: "harvard-classic", name: "Harvard Classic", category: "Professional", isPremium: false, color: "bg-slate-800" },
+  { id: "modern-tech", name: "Tech Minimalist", category: "Modern", isPremium: true, color: "bg-blue-600" },
+  { id: "creative-portfolio", name: "Creative Portfolio", category: "Creative", isPremium: true, color: "bg-purple-600" },
+  { id: "minimal-swiss", name: "Swiss Minimal", category: "Simple", isPremium: false, color: "bg-zinc-800" },
+  { id: "executive-suite", name: "Executive Suite", category: "Professional", isPremium: true, color: "bg-slate-900" },
+  { id: "start-up", name: "Startup Founder", category: "Modern", isPremium: false, color: "bg-emerald-600" },
+  { id: "art-director", name: "Art Director", category: "Creative", isPremium: true, color: "bg-pink-600" },
+  { id: "clean-slate", name: "Clean Slate", category: "Simple", isPremium: false, color: "bg-gray-600" },
+  { id: "google-standard", name: "Google Standard", category: "Professional", isPremium: false, color: "bg-blue-500" },
+  { id: "data-scientist", name: "Data Scientist", category: "Modern", isPremium: true, color: "bg-cyan-600" },
+  { id: "investment-banker", name: "Investment Banker", category: "Executive", isPremium: true, color: "bg-slate-800" },
+  { id: "fresher-entry", name: "Fresher Entry", category: "Simple", isPremium: false, color: "bg-indigo-500" },
 ]
 
 export function TemplateLibrary() {
@@ -73,24 +77,44 @@ export function TemplateLibrary() {
               <CardContent className="p-0">
                 <div className="relative aspect-[8.5/11] overflow-hidden bg-muted/50">
                   <div className="absolute inset-0 p-4">
-                    <div className="h-full w-full rounded border bg-card p-3">
-                      <div className="mb-3 flex items-center gap-2">
-                        <div className="h-10 w-10 rounded-full bg-primary/20" />
-                        <div className="space-y-1.5">
-                          <div className="h-2.5 w-24 rounded bg-foreground/20" />
-                          <div className="h-2 w-20 rounded bg-muted-foreground/20" />
+                    <div className="h-full w-full overflow-hidden rounded border bg-card p-3 shadow-sm">
+                      {/* Header Mockup */}
+                      <div className={`mb-3 flex items-center gap-3 ${template.category === "Creative" ? "flex-col text-center" : ""}`}>
+                        <div className={`h-10 w-10 shrink-0 rounded-full ${template.color} opacity-20`} />
+                        <div className={`space-y-1.5 ${template.category === "Creative" ? "w-full flex flex-col items-center" : "flex-1"}`}>
+                          <div className="h-2.5 w-24 rounded bg-foreground/80" />
+                          <div className="h-2 w-16 rounded bg-muted-foreground/40" />
                         </div>
                       </div>
+
+                      {/* Body Mockup */}
                       <div className="space-y-3">
+                        {/* Section 1 */}
                         <div className="space-y-1.5">
-                          <div className="h-2 w-16 rounded bg-primary/30" />
+                          <div className={`h-2 w-12 rounded ${template.color} opacity-30`} />
+                          <div className="h-1.5 w-full rounded bg-muted" />
                           <div className="h-1.5 w-full rounded bg-muted" />
                           <div className="h-1.5 w-4/5 rounded bg-muted" />
                         </div>
+
+                        {/* Section 2 */}
                         <div className="space-y-1.5">
-                          <div className="h-2 w-20 rounded bg-primary/30" />
+                          <div className={`h-2 w-16 rounded ${template.color} opacity-30`} />
                           <div className="h-1.5 w-full rounded bg-muted" />
-                          <div className="h-1.5 w-3/4 rounded bg-muted" />
+                          <div className="h-1.5 w-5/6 rounded bg-muted" />
+                          <div className="h-1.5 w-4/6 rounded bg-muted" />
+                        </div>
+
+                        {/* Section 3 (Small) */}
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1">
+                            <div className="h-1.5 w-10 rounded bg-muted-foreground/20" />
+                            <div className="h-1.5 w-full rounded bg-muted" />
+                          </div>
+                          <div className="space-y-1">
+                            <div className="h-1.5 w-10 rounded bg-muted-foreground/20" />
+                            <div className="h-1.5 w-full rounded bg-muted" />
+                          </div>
                         </div>
                       </div>
                     </div>

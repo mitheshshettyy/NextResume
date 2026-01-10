@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/landing/hero-section"
