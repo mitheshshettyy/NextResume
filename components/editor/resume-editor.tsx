@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { EditorSidebar } from "./editor-sidebar"
@@ -85,6 +85,17 @@ const initialData: ResumeData = {
 export function ResumeEditor({ resumeId }: { resumeId: string }) {
   const [resumeData, setResumeData] = useState<ResumeData>(initialData)
   const [showPreview, setShowPreview] = useState(true)
+
+  useEffect(() => {
+    const saved = localStorage.getItem("resumeData")
+    if (saved) {
+      try {
+        setResumeData(JSON.parse(saved))
+      } catch (e) {
+        console.error("Failed to parse saved resume data", e)
+      }
+    }
+  }, [])
 
   return (
     <div className="flex h-screen flex-col bg-muted/30">

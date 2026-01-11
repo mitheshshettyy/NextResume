@@ -11,8 +11,30 @@ export function EditorToolbar({ resumeData }: { resumeData: ResumeData }) {
 
   const handleSave = async () => {
     setIsSaving(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSaving(false)
+    try {
+      localStorage.setItem("resumeData", JSON.stringify(resumeData))
+      // Mock network delay for UX
+      await new Promise((resolve) => setTimeout(resolve, 500))
+    } catch (error) {
+      console.error("Failed to save", error)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleExportPDF = () => {
+    window.print()
+  }
+
+  const handleExportJSON = () => {
+    const dataStr = JSON.stringify(resumeData, null, 2)
+    const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr)
+    const exportFileDefaultName = "resume-data.json"
+
+    const linkElement = document.createElement("a")
+    linkElement.setAttribute("href", dataUri)
+    linkElement.setAttribute("download", exportFileDefaultName)
+    linkElement.click()
   }
 
   return (
@@ -31,13 +53,13 @@ export function EditorToolbar({ resumeData }: { resumeData: ResumeData }) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={handleExportPDF}>
             <FileText className="mr-2 h-4 w-4" />
             Download PDF
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={handleExportJSON}>
             <FileCode className="mr-2 h-4 w-4" />
-            Download Word
+            Download JSON
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Share2 className="mr-2 h-4 w-4" />

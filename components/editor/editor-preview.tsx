@@ -13,7 +13,7 @@ export function EditorPreview({ resumeData }: { resumeData: ResumeData }) {
 
   return (
     <div className="mx-auto max-w-[850px]">
-      <div className="aspect-[8.5/11] w-full overflow-hidden rounded-lg border bg-card shadow-lg">
+      <div id="resume-preview" className="aspect-[8.5/11] w-full overflow-hidden rounded-lg border bg-card shadow-lg">
         <div className="h-full w-full p-8 text-[10px] leading-relaxed sm:p-10 sm:text-xs md:p-12 md:text-sm">
           {/* Header */}
           <div className="mb-6 border-b pb-6">
